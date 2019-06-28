@@ -8,10 +8,10 @@ const open = require('open');
 function activate(context) {
 
 	const hitokoto = {
-
+			id:null,
+			intervalTimeFlag:null
 	}
 
-	console.log('Welcome, "hitokoto" is now active!');
 	const disposable = vscode.commands.registerCommand('extension.hitokoto', function () {
 		createHitokoto(hitokoto)
 	});
@@ -39,17 +39,14 @@ function activate(context) {
  *  @param {object} hitokoto 
  */
 function createIntervalHitokoto(hitokoto){
-	let intervalTimeFlag = null
-	return (function(){
-		clearInterval(intervalTimeFlag)
+		clearInterval(hitokoto.intervalTimeFlag)
 		const interval = vscode.workspace.getConfiguration().get('hitokoto.intervalShow')
 		if(interval) {
 			const intervalTime = vscode.workspace.getConfiguration().get('hitokoto.intervalTime')
-			intervalTimeFlag = setInterval(()=>{
+			hitokoto.intervalTimeFlag = setInterval(()=>{
 				createHitokoto(hitokoto)
 			},intervalTime*1000*60)
 		}
-	})()
 }
 
 /**

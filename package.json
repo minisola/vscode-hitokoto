@@ -66,7 +66,8 @@
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test",
-    "package": "vsce package --yarn"
+    "package": "vsce package --yarn",
+    "publish": "vsce publish --yarn"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.42",
