@@ -1,6 +1,6 @@
 const vscode = require('vscode');
-const request = require('request');
-const exec = require('child_process').exec;
+const axios = require('axios');
+const open = require('open');
 
 
 /**
@@ -17,7 +17,7 @@ function activate(context) {
 		createHitokoto(hitokoto)
 	});
 	const getText = vscode.commands.registerCommand('extension.openHitokoto', function () {
-		exec(`start https://hitokoto.cn?id=${hitokoto.id}`)
+		open(`https://hitokoto.cn?id=${hitokoto.id}`)
 	});
 
 	context.subscriptions.push(disposable);
@@ -58,25 +58,22 @@ function createIntervalHitokoto(hitokoto){
  * @param {object} hitokoto 
  */
 function createHitokoto(hitokoto) {
-	const hitokotoBarItem = vscode.window.createStatusBarItem(2, 5)
+	const hitokotoBarItem = vscode.window.createStatusBarItem(2, 10)
 	const api = vscode.workspace.getConfiguration().get('hitokoto.api')
-	request(api, function (err, res, body) {
-		if (!err && res.statusCode == 200) {
-			const data = JSON.parse(body)
-			hitokoto['id'] = data.id
-			hitokotoBarItem.color = '#fff'
-			hitokotoBarItem.text = `$(comment) ${data.hitokoto} ----- ${data.from}`
-			hitokotoBarItem.command = `extension.openHitokoto`
-			hitokotoBarItem.tooltip = "去hitokoto查看此条目";
-			hitokotoBarItem.show()
-			setTimeout(() => {
-				hitokotoBarItem.dispose()
-			}, 15000);
-		} else {
-			vscode.window.showInformationMessage('API服务器连接失败')
-		}
-	})
-
+	axios.get(api).then((res) => {
+		const data = res.data
+		hitokoto['id'] = data.id
+		hitokotoBarItem.color = '#fff'
+		hitokotoBarItem.text = `$(comment) ${data.hitokoto} ----- ${data.from}`
+		hitokotoBarItem.command = `extension.openHitokoto`
+		hitokotoBarItem.tooltip = "去hitokoto查看此条目";
+		hitokotoBarItem.show()
+		setTimeout(() => {
+			hitokotoBarItem.dispose()
+		}, 15000);
+	  }).catch(() => {
+		vscode.window.showInformationMessage('API服务器连接失败')
+	  });
 }
 
 
