@@ -2,7 +2,6 @@ const vscode = require('vscode');
 const axios = require('axios');
 const open = require('open');
 
-
 /**
  * @param {vscode.ExtensionContext} context
  */
