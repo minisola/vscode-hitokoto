@@ -1,4 +1,4 @@
-# hitokoto README
+# hitokoto
 
 a extension for hitokoto. 
 

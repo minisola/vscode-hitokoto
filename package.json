@@ -1,7 +1,7 @@
 {
 	"name": "hitokoto",
 	"displayName": "hitokoto",
-	"description": "",
+	"description": "一句话，传递更多的感动",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.29.0"
@@ -13,14 +13,40 @@
 		"onCommand:extension.hitokoto",
 		"*"
 	],
-	"main": "./extension.js",
+	"main": "./src/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.hitokoto",
 				"title": "hitokoto"
 			}
-		]
+		],
+		"configuration": {
+			"type": "object",
+			"title": "hitokoto",
+			"properties": {
+				"hitokoto.api": {
+					"type": "string",
+					"default": "https://v1.hitokoto.cn",
+					"description": "hitokotoAPI接口地址"
+				},
+				"hitokoto.autoStart": {
+					"type": "boolean",
+					"default": true,
+					"description": "启动时自动展示"
+				},
+				"hitokoto.intervalShow": {
+					"type": "boolean",
+					"default": true,
+					"description": "间隔展示"
+				},
+				"hitokoto.intervalTime": {
+					"type": "number",
+					"default": 120,
+					"description": "间隔展示时间(单位:分钟)"
+				}
+			}
+		}
 	},
 	"scripts": {
 		"postinstall": "node ./node_modules/vscode/bin/install",

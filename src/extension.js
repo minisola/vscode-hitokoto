@@ -12,25 +12,55 @@ function activate(context) {
 
 	}
 
-	console.log('Congratulations, your extension "hitokoto" is now active!');
+	console.log('Welcome, "hitokoto" is now active!');
 	const disposable = vscode.commands.registerCommand('extension.hitokoto', function () {
 		createHitokoto(hitokoto)
 	});
 	const getText = vscode.commands.registerCommand('extension.openHitokoto', function () {
-		// vscode.workspace.openTextDocument('http://baidu.com')
-	exec(`start https://hitokoto.cn?id=${hitokoto.id}`)
+		exec(`start https://hitokoto.cn?id=${hitokoto.id}`)
 	});
 
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(getText);
 	//start
-	createHitokoto(hitokoto)
+	const autoStart = vscode.workspace.getConfiguration().get('hitokoto.autoStart')
+	if(autoStart) createHitokoto(hitokoto)
+
+	//interval
+	createIntervalHitokoto(hitokoto)
+	//configuration changed
+	vscode.workspace.onDidChangeConfiguration(()=>{
+		createIntervalHitokoto(hitokoto)
+	})
+
 }
 
+/**
+ *  create a intervallic hitokoto
+ *  @param {object} hitokoto 
+ */
+function createIntervalHitokoto(hitokoto){
+	let intervalTimeFlag = null
+	return (function(){
+		clearInterval(intervalTimeFlag)
+		const interval = vscode.workspace.getConfiguration().get('hitokoto.intervalShow')
+		if(interval) {
+			const intervalTime = vscode.workspace.getConfiguration().get('hitokoto.intervalTime')
+			intervalTimeFlag = setInterval(()=>{
+				createHitokoto(hitokoto)
+			},intervalTime*1000*60)
+		}
+	})()
+}
 
+/**
+ * create a hitokoto barItem
+ * @param {object} hitokoto 
+ */
 function createHitokoto(hitokoto) {
 	const hitokotoBarItem = vscode.window.createStatusBarItem(2, 5)
-	request('https://v1.hitokoto.cn', function (err, res, body) {
+	const api = vscode.workspace.getConfiguration().get('hitokoto.api')
+	request(api, function (err, res, body) {
 		if (!err && res.statusCode == 200) {
 			const data = JSON.parse(body)
 			hitokoto['id'] = data.id
@@ -42,7 +72,6 @@ function createHitokoto(hitokoto) {
 			setTimeout(() => {
 				hitokotoBarItem.dispose()
 			}, 15000);
-			// vscode.window.setStatusBarMessage(`${data.hitokoto} ----- ${data.from}`,10000);
 		} else {
 			vscode.window.showInformationMessage('API服务器连接失败')
 		}
@@ -53,7 +82,6 @@ function createHitokoto(hitokoto) {
 
 
 exports.activate = activate;
-exports.createHitokoto = createHitokoto;
 
 // this method is called when your extension is deactivated
 function deactivate() {}
