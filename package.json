@@ -1,14 +1,29 @@
 {
 	"name": "hitokoto",
 	"displayName": "hitokoto",
+	"publisher":"yukisola",
 	"description": "一句话，传递更多的感动",
+	"icon":"logo.png",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.29.0"
 	},
-	"categories": [
-		"Other"
-	],
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "hitokoto",
+        "一言"
+    ],
+    "bugs": {
+        "url": "https://github.com/minisola/vscode-hitokoto/issues",
+        "email": "blackkid1989@gmail.com"
+    },
+    "homepage": "https://github.com/minisola/vscode-hitokoto",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/minisola/vscode-hitokoto"
+    },
 	"activationEvents": [
 		"onCommand:extension.hitokoto",
 		"*"

@@ -4,6 +4,8 @@
 
 此插件为Hitokoto的**非官方**插件,提供vscode中一言的功能
 
+[github](https://github.com/minisola/vscode-hitokoto)
+
 
 ## 使用
 
@@ -11,13 +13,14 @@
 * 间隔时间可在设置中配置
 * 通过 `F1` 或 `ctrl+shift+p` 输入 `hitokoto` 也可立即获取一条
 
-![usage](sample.jpg)
+![sample](doc/sample.jpg)
 
 
 ## 配置
 
 * `hitokoto.api`
     hitokoto的接口地址, 可参考此页面:[https://hitokoto.cn/api](https://hitokoto.cn/api?_blank)
+
 * `hitokoto.autoStart`
     是否启动时自动展示
 
