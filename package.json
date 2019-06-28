@@ -65,7 +65,8 @@
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test"
+    "test": "node ./node_modules/vscode/bin/test",
+    "package": "vsce package"
   },
   "devDependencies": {
     "typescript": "^3.3.1",
