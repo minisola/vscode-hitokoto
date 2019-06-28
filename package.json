@@ -32,7 +32,7 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.hitokoto",
+				"command": "yukisola.hitokoto",
 				"title": "hitokoto"
 			}
 		],

@@ -13,10 +13,10 @@ function activate(context) {
 	}
 
 	console.log('Welcome, "hitokoto" is now active!');
-	const disposable = vscode.commands.registerCommand('hitokoto', function () {
+	const disposable = vscode.commands.registerCommand('yukisola.hitokoto', function () {
 		createHitokoto(hitokoto)
 	});
-	const getText = vscode.commands.registerCommand('openHitokoto', function () {
+	const getText = vscode.commands.registerCommand('yukisola.openHitokoto', function () {
 		exec(`start https://hitokoto.cn?id=${hitokoto.id}`)
 	});
 
@@ -66,7 +66,7 @@ function createHitokoto(hitokoto) {
 			hitokoto['id'] = data.id
 			hitokotoBarItem.color = '#fff'
 			hitokotoBarItem.text = `$(comment) ${data.hitokoto} ----- ${data.from}`
-			hitokotoBarItem.command = `openHitokoto`
+			hitokotoBarItem.command = `yukisola.openHitokoto`
 			hitokotoBarItem.tooltip = "去hitokoto查看此条目";
 			hitokotoBarItem.show()
 			setTimeout(() => {
