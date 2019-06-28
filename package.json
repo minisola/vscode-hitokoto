@@ -25,7 +25,7 @@
         "url": "https://github.com/minisola/vscode-hitokoto"
     },
 	"activationEvents": [
-		"onCommand:extension.hitokoto",
+		"onCommand:yukisola.hitokoto",
 		"*"
 	],
 	"main": "./src/extension.js",
