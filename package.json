@@ -42,7 +42,7 @@
 				},
 				"hitokoto.intervalTime": {
 					"type": "number",
-					"default": 120,
+					"default": 30,
 					"description": "间隔展示时间(单位:分钟)"
 				}
 			}
