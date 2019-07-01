@@ -1,4 +1,4 @@
-# hitoko
+# hitokoto
 
 > [一言网](https://hitokoto.cn?_blank)(Hitokoto.cn)创立于2016年，隶属于萌创Team，目前网站主要提供一句话服务。
 
@@ -30,3 +30,5 @@
 * `hitokoto.intervalTime`
     间隔展示时间(单位:分钟) (default:**30**)
 
+* `hitokoto.fontColor`
+    字体颜色 (default:**#ffffff**)

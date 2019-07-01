@@ -59,7 +59,7 @@ function createHitokoto(hitokoto) {
 	axios.get(api).then((res) => {
 		const data = res.data
 		hitokoto['id'] = data.id
-		hitokotoBarItem.color = '#fff'
+		hitokotoBarItem.color = vscode.workspace.getConfiguration().get('hitokoto.fontColor')
 		hitokotoBarItem.text = `$(comment) ${data.hitokoto} ----- ${data.from}`
 		hitokotoBarItem.command = `extension.openHitokoto`
 		hitokotoBarItem.tooltip = "去hitokoto查看此条目";
