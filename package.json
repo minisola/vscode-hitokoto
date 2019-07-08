@@ -45,6 +45,15 @@
           "default": "https://v1.hitokoto.cn",
           "description": "hitokotoAPI接口地址"
         },
+        "hitokoto.showType": {
+					"type": "string",
+					"default": "状态栏",
+					"enum": [
+            "弹窗",
+            "状态栏"
+					],
+					"description": "一言的显示方式"
+        },
         "hitokoto.autoStart": {
           "type": "boolean",
           "default": true,
@@ -63,7 +72,7 @@
         "hitokoto.fontColor": {
           "type": "string",
           "default": "#ffffff",
-          "description": "字体颜色"
+          "description": "字体颜色(状态栏显示时有效)"
         }
       }
     }

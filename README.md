@@ -13,13 +13,22 @@
 * 间隔时间可在设置中配置
 * 通过 `F1` 或 `ctrl+shift+p` 输入 `hitokoto` 也可立即获取一条
 
+### 状态栏显示方式
 ![sample](doc/sample.jpg)
 
+### 弹窗显示方式
+
+**此方式必须手动关闭,喂一碗强制鸡汤**
+
+![sample](doc/sample2.jpg)
 
 ## 配置
 
 * `hitokoto.api`
     hitokoto的接口地址, 可参考此页面:[https://hitokoto.cn/api](https://hitokoto.cn/api?_blank)
+
+* `hitokoto.showType`
+    hitokoto的展示方式,可选**状态栏**或**弹窗** (default:**状态栏**)
 
 * `hitokoto.autoStart`
     是否启动时自动展示
